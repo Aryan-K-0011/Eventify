@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Sparkles, Send, Loader2, Cpu, Grid } from 'lucide-react';
-import { getEventAdvice } from '../services/geminiService';
+import { Sparkles, Send, Loader2, Cpu, Grid, Image as ImageIcon, Download } from 'lucide-react';
+import { getEventAdvice, generateEventImage } from '../services/geminiService';
 import Button from '../components/Button';
 
 const SmartPlanner: React.FC = () => {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const handlePlan = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,11 +16,21 @@ const SmartPlanner: React.FC = () => {
 
     setLoading(true);
     setResponse(null);
+    setImage(null);
     
     const result = await getEventAdvice(input);
     
     setResponse(result);
     setLoading(false);
+  };
+
+  const handleVisualize = async () => {
+    if (!response) return;
+    setImageLoading(true);
+    // Use the generated advice to inspire the image
+    const imgData = await generateEventImage(response.substring(0, 500)); 
+    setImage(imgData);
+    setImageLoading(false);
   };
 
   return (
@@ -120,8 +132,48 @@ const SmartPlanner: React.FC = () => {
                              {response}
                         </div>
                         
+                        {/* Visualization Section */}
+                        {image ? (
+                           <div className="mt-12 animate-fade-in-up">
+                              <div className="flex items-center gap-3 mb-4 text-luxGold text-xs uppercase tracking-widest">
+                                 <Sparkles size={14} /> 
+                                 <span>Visual Concept Rendered</span>
+                              </div>
+                              <div className="relative group rounded-sm overflow-hidden border border-luxGold/30 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                                <img src={image} alt="Event Visualization" className="w-full h-auto object-cover" />
+                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+                                   <a href={image} download="eventify-concept.png">
+                                      <Button variant="outline" className="flex items-center gap-2 border-white text-white hover:bg-white hover:text-black hover:border-white">
+                                         <Download size={16} /> Save Masterpiece
+                                      </Button>
+                                   </a>
+                                </div>
+                              </div>
+                           </div>
+                        ) : (
+                           <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                              <div>
+                                 <p className="text-luxGold text-sm font-serif italic">"A picture is worth a thousand words."</p>
+                                 <p className="text-gray-500 text-xs mt-1">Generate a photorealistic preview of this concept.</p>
+                              </div>
+                              <Button 
+                                variant="outline" 
+                                size="sm" 
+                                onClick={handleVisualize} 
+                                disabled={imageLoading}
+                                className="border-luxGold/50 text-luxGold hover:bg-luxGold hover:text-black w-full md:w-auto"
+                              >
+                                 {imageLoading ? (
+                                     <span className="flex items-center gap-2"><Loader2 className="animate-spin" size={16} /> Rendering...</span>
+                                 ) : (
+                                     <span className="flex items-center gap-2"><ImageIcon size={16} /> Visualize Concept</span>
+                                 )}
+                              </Button>
+                           </div>
+                        )}
+
                         <div className="mt-12 flex justify-end">
-                            <Button variant="ghost" onClick={() => { setInput(''); setResponse(null); }} className="text-xs uppercase tracking-widest opacity-50 hover:opacity-100">
+                            <Button variant="ghost" onClick={() => { setInput(''); setResponse(null); setImage(null); }} className="text-xs uppercase tracking-widest opacity-50 hover:opacity-100">
                                 Reset Terminal
                             </Button>
                         </div>
