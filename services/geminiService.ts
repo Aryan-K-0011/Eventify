@@ -1,9 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const getEventAdvice = async (query: string): Promise<string> => {
   try {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("API Key not found. Please set 'API_KEY' in your environment variables.");
+      return "System Error: API Key is missing. Please configure the application settings.";
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: `You are an expert event planner for "Eventify". 
@@ -22,6 +27,13 @@ export const getEventAdvice = async (query: string): Promise<string> => {
 
 export const generateEventImage = async (prompt: string): Promise<string | null> => {
   try {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("API Key not found. Please set 'API_KEY' in your environment variables.");
+      return null;
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
       contents: {
