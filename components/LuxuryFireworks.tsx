@@ -49,6 +49,10 @@ const LuxuryFireworks: React.FC = () => {
         this.brightness = Math.random() * 50 + 50;
         this.targetRadius = 1;
         this.dead = false;
+        
+        // Initialized to satisfy TypeScript
+        this.velocity = { x: 0, y: 0 };
+        this.radius = 2;
       }
       
       // Add missing properties for TypeScript
