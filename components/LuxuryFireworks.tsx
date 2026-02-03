@@ -56,7 +56,7 @@ const LuxuryFireworks: React.FC = () => {
         this.targetRadius = 1;
         this.dead = false;
         
-        // Fix: Initialize properties to satisfy strict TypeScript requirements
+        // Fix: Explicitly initialize velocity and radius to satisfy strict TypeScript checks
         this.velocity = { x: 0, y: 0 };
         this.radius = 2;
       }
