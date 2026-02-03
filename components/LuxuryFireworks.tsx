@@ -26,14 +26,10 @@ const LuxuryFireworks: React.FC = () => {
       targetY: number;
       speed: number;
       angle: number;
+      velocity: { x: number; y: number };
       brightness: number;
+      radius: number;
       dead: boolean;
-      distanceToTarget: number;
-      distanceTraveled: number;
-      coordinates: number[][];
-      coordinateCount: number;
-      acceleration: number;
-      targetRadius: number;
 
       constructor(sx: number, sy: number, tx: number, ty: number) {
         this.x = sx;
@@ -54,6 +50,14 @@ const LuxuryFireworks: React.FC = () => {
         this.targetRadius = 1;
         this.dead = false;
       }
+      
+      // Add missing properties for TypeScript
+      distanceToTarget: number;
+      distanceTraveled: number;
+      coordinates: number[][];
+      coordinateCount: number;
+      acceleration: number;
+      targetRadius: number;
 
       calculateDistance(p1x: number, p1y: number, p2x: number, p2y: number) {
         const powX = Math.pow(p2x - p1x, 2);
