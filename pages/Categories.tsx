@@ -106,7 +106,11 @@ const Categories: React.FC = () => {
 
                            {/* Action */}
                            <div className="flex gap-4 pt-4">
-                              <Link to="/contact" className="flex-1">
+                              <Link 
+                                to="/contact" 
+                                state={{ inquiryContext: `Inquiry regarding collection: ${category.title}` }}
+                                className="flex-1"
+                              >
                                  <button className="w-full py-3 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 group/btn">
                                     Inquire
                                  </button>

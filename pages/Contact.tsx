@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
 import { Mail, Phone, MapPin, ArrowRight, Clock, Shield, Star, CheckCircle } from 'lucide-react';
 import { useData } from '../context/DataContext';
+import { useLocation } from 'react-router-dom';
 
 const Contact: React.FC = () => {
   const { addInquiry } = useData();
+  const location = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -13,6 +15,17 @@ const Contact: React.FC = () => {
     type: 'Wedding',
     message: ''
   });
+
+  // Pre-fill message from navigation state (Contextual Inquiries)
+  useEffect(() => {
+    if (location.state && location.state.inquiryContext) {
+        setFormData(prev => ({
+            ...prev,
+            message: location.state.inquiryContext,
+            type: 'Consultation' // Default to consultation for specific vendor inquiries
+        }));
+    }
+  }, [location.state]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

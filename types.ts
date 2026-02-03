@@ -9,6 +9,10 @@ export interface Vendor {
   imageUrl: string;
   description: string;
   services: string[];
+  capacity: number;
+  established: number;
+  amenities: string[];
+  contactEmail: string;
 }
 
 export interface EventCategory {

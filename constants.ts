@@ -91,7 +91,11 @@ export const VENDORS: Vendor[] = [
     location: 'Parisian Quarter',
     imageUrl: IMAGES.venue,
     description: 'A historic estate featuring crystal chandeliers, gold-leaf ceilings, and manicured gardens.',
-    services: ['White Glove Service', 'Valet', 'Private Security']
+    services: ['White Glove Service', 'Valet', 'Private Security'],
+    capacity: 450,
+    established: 1789,
+    amenities: ['Helipad', 'Private Suites', 'Historical Archives', 'Wine Cellar'],
+    contactEmail: 'inquiries@chateaulumiere.fr'
   },
   {
     id: 'v2',
@@ -103,7 +107,11 @@ export const VENDORS: Vendor[] = [
     location: 'Metropolitan',
     imageUrl: IMAGES.catering,
     description: 'Michelin-star inspired menus tailored to the most refined palates.',
-    services: ['Omakase', 'French Service', 'Sommelier']
+    services: ['Omakase', 'French Service', 'Sommelier'],
+    capacity: 1000,
+    established: 1995,
+    amenities: ['Custom Menu Design', 'Mobile Kitchens', 'Mixology Bar', 'Sustainable Sourcing'],
+    contactEmail: 'taste@maisonculinaire.com'
   },
   {
     id: 'v3',
@@ -115,7 +123,11 @@ export const VENDORS: Vendor[] = [
     location: 'International',
     imageUrl: IMAGES.photo,
     description: 'Editorial style photography that belongs in a fashion magazine.',
-    services: ['Drone', 'Film Photography', 'Same-Day Edit']
+    services: ['Drone', 'Film Photography', 'Same-Day Edit'],
+    capacity: 1,
+    established: 2012,
+    amenities: ['Fine Art Prints', 'Private Gallery', 'Multi-day Coverage', 'Styling Assistant'],
+    contactEmail: 'bookings@voguelens.com'
   },
   {
     id: 'v4',
@@ -127,7 +139,11 @@ export const VENDORS: Vendor[] = [
     location: 'City Center',
     imageUrl: IMAGES.entertainment,
     description: 'Curated auditory experiences from live orchestras to celebrity DJs.',
-    services: ['Acoustic', 'Full Band', 'Sound Engineering']
+    services: ['Acoustic', 'Full Band', 'Sound Engineering'],
+    capacity: 5000,
+    established: 2008,
+    amenities: ['Custom Playlists', 'Stage Lighting', 'Silent Disco', 'Vinyl Sets'],
+    contactEmail: 'listen@velvetsound.com'
   },
   {
     id: 'v5',
@@ -139,7 +155,11 @@ export const VENDORS: Vendor[] = [
     location: 'Design District',
     imageUrl: IMAGES.floral,
     description: 'Sculptural floral installations that defy gravity and imagination.',
-    services: ['Installations', 'Centerpieces', 'Set Design']
+    services: ['Installations', 'Centerpieces', 'Set Design'],
+    capacity: 200,
+    established: 2018,
+    amenities: ['Rare Bloom Sourcing', 'Structural Engineering', 'Preservation Service', 'Fragrance Design'],
+    contactEmail: 'design@botanicartistry.com'
   }
 ];
 
