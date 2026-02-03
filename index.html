@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventify - The Royal Standard</title>
     
+    <!-- Global Error Handler: Shows error on screen if App fails to load -->
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = `
+            <div style="height:100vh; width:100vw; background:#050505; color:#F2F0E9; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; font-family:'Segoe UI', sans-serif; text-align:center; z-index:99999; position:fixed; top:0; left:0;">
+              <h2 style="color:#D4AF37; font-size:2rem; margin-bottom:10px; font-family:'Times New Roman', serif;">System Malfunction</h2>
+              <div style="border: 1px solid #333; background: #0a0a0a; padding: 20px; border-radius: 4px; max-width: 800px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <p style="color:#ef4444; font-weight:bold; margin-bottom:10px; letter-spacing: 2px; text-transform:uppercase;">Critical Error Detected</p>
+                <pre style="text-align:left; white-space:pre-wrap; color:#888; font-size:12px; font-family:monospace; overflow:auto; max-height:200px;">${message}\n\nAt: ${source}:${lineno}</pre>
+              </div>
+              <button onclick="window.location.reload()" style="margin-top:30px; padding:12px 30px; background:#D4AF37; color:#000; border:none; font-weight:bold; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:0.3s;">
+                Reboot System
+              </button>
+            </div>
+          `;
+        }
+      };
+      
+      // Handle Promise Rejections (Async errors)
+      window.onunhandledrejection = function(event) {
+        console.error("Unhandled rejection:", event.reason);
+        // We can optionally display these too, but usually window.onerror catches the critical ones.
+      };
+    </script>
+
     <!-- Google Fonts: Playfair Display (Luxury Serif), Lato (Clean Sans), Cinzel (Royal) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
