@@ -274,12 +274,12 @@ const AdminDashboard: React.FC = () => {
                 </div>
 
                 <div className="space-y-2 opacity-90 h-full overflow-y-auto pb-10">
-                    <p className="text-white">> Initializing Neural Core...</p>
-                    <p className="text-white">> Loading Model: gemini-3-flash-preview</p>
-                    <p className="text-gray-500">> Connecting to vector database [High-Availability]</p>
+                    <p className="text-white">&gt; Initializing Neural Core...</p>
+                    <p className="text-white">&gt; Loading Model: gemini-3-flash-preview</p>
+                    <p className="text-gray-500">&gt; Connecting to vector database [High-Availability]</p>
                     <p className="text-green-400">SUCCESS: Connection established (4ms latency)</p>
                     <br/>
-                    <p className="text-white">> STREAMING LIVE LOGS:</p>
+                    <p className="text-white">&gt; STREAMING LIVE LOGS:</p>
                     {[
                         "[10:42:01] INFO: Request received from User_ID_992 (Query: 'Underwater Wedding')",
                         "[10:42:02] PROC: Generating semantic tokens...",

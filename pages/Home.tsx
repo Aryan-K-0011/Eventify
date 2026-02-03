@@ -279,11 +279,11 @@ const Home: React.FC = () => {
 
                          <div className="font-mono text-sm space-y-6 relative z-10">
                              <div className="flex gap-4 items-start opacity-50">
-                                 <span className="text-luxGold">></span>
+                                 <span className="text-luxGold">&gt;</span>
                                  <p className="text-gray-400">User: Create a moodboard for a Neo-Tokyo wedding.</p>
                              </div>
                              <div className="flex gap-4 items-start">
-                                 <span className="text-green-400">></span>
+                                 <span className="text-green-400">&gt;</span>
                                  <p className="text-white typing-effect">
                                      <span className="text-green-400 opacity-70">[Processing...]</span><br/><br/>
                                      Concept Generated: "Neon Cherry Blossom". <br/>
