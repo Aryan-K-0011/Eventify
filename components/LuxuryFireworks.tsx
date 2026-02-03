@@ -30,6 +30,12 @@ const LuxuryFireworks: React.FC = () => {
       brightness: number;
       radius: number;
       dead: boolean;
+      distanceToTarget: number;
+      distanceTraveled: number;
+      coordinates: number[][];
+      coordinateCount: number;
+      acceleration: number;
+      targetRadius: number;
 
       constructor(sx: number, sy: number, tx: number, ty: number) {
         this.x = sx;
@@ -50,18 +56,10 @@ const LuxuryFireworks: React.FC = () => {
         this.targetRadius = 1;
         this.dead = false;
         
-        // Initialized to satisfy TypeScript
+        // Fix: Initialize properties to satisfy strict TypeScript requirements
         this.velocity = { x: 0, y: 0 };
         this.radius = 2;
       }
-      
-      // Add missing properties for TypeScript
-      distanceToTarget: number;
-      distanceTraveled: number;
-      coordinates: number[][];
-      coordinateCount: number;
-      acceleration: number;
-      targetRadius: number;
 
       calculateDistance(p1x: number, p1y: number, p2x: number, p2y: number) {
         const powX = Math.pow(p2x - p1x, 2);
@@ -83,14 +81,13 @@ const LuxuryFireworks: React.FC = () => {
         const vx = Math.cos(this.angle) * this.speed;
         const vy = Math.sin(this.angle) * this.speed;
         
-        this.distanceTraveled = this.calculateDistance(this.x + vx, this.y + vy, this.x + vx, this.y + vy); // Simplified for visual effect
+        this.distanceTraveled = this.calculateDistance(this.x + vx, this.y + vy, this.x + vx, this.y + vy); 
         
-        // Use simpler distance check
         const distX = this.targetX - this.x;
         const distY = this.targetY - this.y;
         const dist = Math.sqrt(distX * distX + distY * distY);
 
-        if (dist < this.speed * 2 || this.y < this.targetY) { // Trigger explosion slightly earlier or at target
+        if (dist < this.speed * 2 || this.y < this.targetY) { 
              createParticles(this.targetX, this.targetY);
              fireworks.splice(index, 1);
         } else {
